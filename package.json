@@ -1,15 +1,19 @@
 {
-  "author": "Sandeep Mistry <sandeep.mistry@gmail.com>",
+  "author": "Sandeep Mistry",
+  "maintainers": [
+    "Jacob Rosenthal",
+    "Luis Montes"
+  ],
   "license": "MIT",
-  "name": "noble",
+  "name": "@abandonware/noble",
   "description": "A Node.js BLE (Bluetooth Low Energy) central library.",
-  "version": "1.3.0",
+  "version": "1.9.2-14",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sandeepmistry/noble.git"
+    "url": "https://github.com/abandonware/noble.git"
   },
   "bugs": {
-    "url": "https://github.com/sandeepmistry/noble/issues"
+    "url": "https://github.com/abandonware/noble/issues"
   },
   "keywords": [
     "bluetooth",
@@ -19,37 +23,48 @@
     "central"
   ],
   "main": "./index.js",
+  "types": "./index.d.ts",
   "engines": {
-    "node": ">=0.8"
+    "node": ">=6"
   },
   "os": [
     "darwin",
     "linux",
+    "freebsd",
     "win32"
   ],
   "dependencies": {
-    "debug": "~2.2.0"
+    "debug": "^4.3.1",
+    "napi-thread-safe-callback": "0.0.6",
+    "node-addon-api": "^3.2.0"
   },
   "optionalDependencies": {
-    "bluetooth-hci-socket": "~0.4.1",
-    "bplist-parser": "0.0.6",
-    "xpc-connection": "~0.1.4"
+    "@abandonware/bluetooth-hci-socket": "^0.5.3-7"
   },
   "devDependencies": {
-    "jshint": "latest",
-    "mocha": "~1.8.2",
-    "should": "~1.2.2",
-    "sinon": "~1.6.0",
-    "async": "~0.2.9",
-    "ws": "~0.4.31"
+    "async": "^3.2.0",
+    "eslint": "^7.27.0",
+    "eslint-config-semistandard": "^15.0.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "install": "^0.13.0",
+    "mocha": "^8.4.0",
+    "node-gyp": "^8.0.0",
+    "prettier": "^2.3.0",
+    "proxyquire": "^2.1.3",
+    "should": "~13.2.3",
+    "sinon": "~11.1.1",
+    "ws": "^7.4.6"
   },
   "scripts": {
-    "pretest": "jshint *.js lib/. test/.",
+    "lint": "eslint \"**/*.js\"",
+    "lint-fix": "eslint \"**/*.js\" --fix",
     "test": "mocha -R spec test/*.js"
   },
   "browser": {
-    "./distributed/bindings": false,
-    "./mac/bindings": false,
-    "./hci-socket/bindings": false
+    "./lib/resolve-bindings.js": "./lib/resolve-bindings-web.js"
   }
 }
